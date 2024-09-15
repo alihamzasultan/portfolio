@@ -73,9 +73,6 @@
               </a>
             </li>
             <li>
-              <a class="scroll-to" href="#contact">
-                <i class="las la-envelope"></i> <span>Contact</span>
-              </a>
             </li>
           </ul>
         </div>
@@ -132,9 +129,6 @@
         </a>
       </li>
       <li>
-        <a class="scroll-to" href="#contact">
-          <span>Contact</span> <i class="las la-envelope"></i>
-        </a>
       </li>
     </ul>
 
@@ -191,9 +185,6 @@
                 <a href="https://www.instagram.com/alihamzasultaan" target="_blank"><i class="lab la-instagram"></i></a>
               </li>
             </ul>
-            <a href="#contact" class="theme-btn">
-              <i class="las la-envelope"></i> Hire Me!
-            </a>
           </div>
 
           <section class="hero-section page-section scroll-to-page" id="home">
@@ -681,107 +672,6 @@
             </div>
           </section>
 
-          <section class="contact-area page-section scroll-content" id="contact">
-            <div class="custom-container">
-              <div class="contact-content content-width">
-                <div class="section-header">
-                  <h4 class="subtitle scroll-animation" data-animation="fade_from_bottom">
-                    <i class="las la-envelope"></i> contact
-                  </h4>
-                  <h1 class="scroll-animation" data-animation="fade_from_bottom">
-                    Let's Work <span>Together!</span>
-                  </h1>
-                </div>
-                <p id="required-msg">* Marked fields are required to fill.</p>
-          
-                <form class="contact-form scroll-animation" data-animation="fade_from_bottom" enctype="multipart/form-data" method="POST" name="contact">
-                  <input type="hidden" name="form-name" value="contact">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="input-group">
-                        <label for="full-name">Full Name <sup>*</sup></label>
-                        <input type="text" name="name" id="full-name" placeholder="Your Full Name" required="">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="input-group">
-                        <label for="email">Email <sup>*</sup></label>
-                        <input type="email" name="email" id="email" placeholder="Your email address" required="">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="input-group">
-                        <label for="message">Message <sup>*</sup></label>
-                        <textarea name="message" id="message" placeholder="Write your message here ..." required=""></textarea>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="input-group upload-attachment">
-                        <div>
-                          <label for="upload-attachment">
-                            <i class="las la-cloud-upload-alt"></i>
-                            <span id="file-name">ADD AN ATTACHMENT</span>
-                            <input type="file" name="file" id="upload-attachment" onchange="updateFileName(this)">
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="input-group submit-btn-wrap">
-                        <button class="theme-btn" name="submit" type="submit" id="submit-form">
-                          Send Message
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </section>
-          
-          <!-- Success Modal -->
-          <div id="successModal" class="modal">
-            <div class="modal-content">
-              <span class="close-btn">&times;</span>
-              <p>Your message was sent successfully!</p>
-            </div>
-          </div>
-
-          <script>
-            document.querySelector('.contact-form').addEventListener('submit', function(event) {
-  event.preventDefault(); // Prevent the actual form submission
-
-  // Display the modal
-  const modal = document.getElementById('successModal');
-  modal.style.display = 'block';
-
-  // Clear the form fields
-  document.getElementById('full-name').value = '';
-  document.getElementById('email').value = '';
-  document.getElementById('message').value = '';
-  document.getElementById('file-name').textContent = 'ADD AN ATTACHMENT';
-  document.getElementById('upload-attachment').value = '';
-
-  // Close the modal when the user clicks on the close button
-  document.querySelector('.close-btn').onclick = function() {
-    modal.style.display = 'none';
-  };
-
-  // Close the modal when the user clicks anywhere outside the modal
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = 'none';
-    }
-  };
-});
-
-function updateFileName(input) {
-  const fileName = input.files.length > 0 ? input.files[0].name : 'ADD AN ATTACHMENT';
-  document.getElementById('file-name').textContent = fileName;
-}
-
-          </script>
-          
           
         </div>
       </div>
