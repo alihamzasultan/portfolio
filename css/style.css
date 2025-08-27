@@ -29,8 +29,238 @@
     * @Keyframe
 
 */
+/* Import a font similar to the image, e.g., Outfit from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
+
+/* Basic reset and body style for context (adjust if using in a larger project) */
+/* html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+    background-color: #000;
+    color: #fff;
+    overflow-x: hidden; *Prevent body scroll while modal is active, handled by JS later*
+} */
+
+/* Ensure this section has the correct background/text colors if not inherited */
+.service-section {
+    background-color: #000; /* Dark background */
+    color: #fff; /* White text */
+    padding: 60px 0; /* Add some vertical padding */
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Section Header */
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 0 20px; /* Add horizontal padding for smaller screens */
+}
+
+.section-title {
+    font-size: 40px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+}
+
+.section-subtitle {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+}
+
+/* Service Cards Container */
+.service-cards-container {
+    display: flex; /* Arrange cards horizontally */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Add smooth scrolling on iOS */
+    padding: 0 20px 20px; /* Add padding around the cards and space for scrollbar */
+    gap: 20px; /* Space between cards */
+    /* Optional: Hide the default scrollbar while keeping functionality */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #333 #1a1a1a; /* For Firefox */
+}
+
+/* Optional: Style the scrollbar for Webkit browsers (Chrome, Safari, Edge) */
+.service-cards-container::-webkit-scrollbar {
+    height: 8px; /* Height of the horizontal scrollbar */
+}
+
+.service-cards-container::-webkit-scrollbar-track {
+    background: #1a1a1a; /* Track color */
+    border-radius: 10px;
+}
+
+.service-cards-container::-webkit-scrollbar-thumb {
+    background: #333; /* Thumb color */
+    border-radius: 10px;
+}
+
+.service-cards-container::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Thumb color on hover */
+}
+
+
+/* Service Cards */
+.service-card {
+    flex: 0 0 320px; /* Prevent shrinking, prevent growing, set base width */
+    width: 320px; /* Explicit width */
+    min-height: 380px; /* Adjust height as needed */
+    background-color: #000; /* Card background is same as section */
+    border: 1px solid; /* Base border style */
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Push button to the bottom */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+/* Border Colors */
+.blue-border { border-color: #007bff; }
+.green-border { border-color: #28a745; }
+.orange-border { border-color: #fd7e14; }
+.purple-border { border-color: #6f42c1; }
+.red-border { border-color: #dc3545; }
+
+
+.card-title {
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0 0 15px 0;
+    line-height: 1.2;
+}
+
+.card-description {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 20px; /* Space before the button */
+    flex-grow: 1; /* Allow description to take up available space */
+}
+
+.know-more-button {
+    display: inline-flex; /* Align text and arrow */
+    align-items: center;
+    background-color: #fff; /* White background for button */
+    color: #000; /* Black text */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px; /* Pill shape */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.know-more-button:hover {
+    background-color: #eee;
+}
+
+.arrow-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-left: 8px;
+    background-color: #000; /* Black circle background */
+    color: #fff; /* White arrow */
+    border-radius: 50%; /* Make it round */
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* Modal Styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark semi-transparent overlay */
+    display: flex; /* Use flexbox to center content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    z-index: 1000; /* Ensure it's on top of other content */
+    visibility: hidden; /* Start hidden */
+    opacity: 0; /* Start fully transparent */
+    transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition */
+}
+
+.modal-overlay.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: #000; /* Dark background */
+    color: #fff; /* White text */
+    padding: 40px;
+    border-radius: 8px;
+    width: 90%; /* Responsive width */
+    max-width: 700px; /* Maximum width */
+    position: relative; /* Needed to position the close button */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    max-height: 90vh; /* Prevent content from overflowing viewport */
+    overflow-y: auto; /* Add scroll if content is too tall */
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #aaa;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: #fff;
+}
+
+.modal-title {
+    font-size: 40px; /* Larger title */
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+}
+
+.modal-description {
+    font-size: 18px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Style for the optional extra button (like 'Figma') */
+.modal-extra-button {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+.modal-extra-button:hover {
+     background-color: #eee;
+}
+
+
+/* Hide body scroll when modal is visible */
+body.modal-open {
+    overflow: hidden;
+}
 :root {
-  --primary_color: #0083ee;
+  --primary_color: #ffffff;
 }
 
 *,
@@ -123,7 +353,7 @@ ul {
 
 .custom-container {
   max-width: 1130px;
-  padding: 0 15px;
+  padding: 0 50px;
   margin: auto;
 }
 
@@ -752,75 +982,6 @@ main.drake-main {
   color: var(--primary_color);
 }
 
-/* 06 - Left Sidebar */
-.left-sidebar {
-  max-width: 485px;
-  width: 100%;
-  border-radius: 30px;
-  border: 1px solid #565656;
-  position: fixed;
-  left: 5px;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 50px;
-  z-index: 10;
-}
-
-.drake-main .left-sidebar {
-  display: none;
-}
-
-.left-sidebar>img.me {
-  border-radius: 30px;
-  display: block;
-  margin-bottom: 10px !important;
-}
-
-.left-sidebar .sidebar-header {
-  margin-bottom: 65px;
-}
-
-.left-sidebar .sidebar-header .designation {
-  max-width: 110px;
-  text-align: right;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.left-sidebar h2 {
-  font-size: 24px;
-  color: #fff;
-  text-align: center;
-  font-weight: 300;
-}
-
-.left-sidebar .social-profile {
-  gap: 8px;
-  margin-bottom: 118px;
-}
-
-.left-sidebar .social-profile li a {
-  display: block;
-  width: 50px;
-  height: 50px;
-  line-height: 46px;
-  text-align: center;
-  border: 2px solid #565656;
-  border-radius: 50%;
-  color: #999999;
-  font-size: 20px;
-  transition: 0.3s;
-}
-
-.left-sidebar .social-profile li a:hover {
-  color: var(--primary_color);
-  border-color: var(--primary_color);
-}
-
-.left-sidebar .theme-btn {
-  width: 100%;
-}
 
 /* 07 - Hero Section */
 .hero-section {
@@ -840,6 +1001,7 @@ main.drake-main {
   line-height: 90px;
   margin-bottom: 43px;
   font-weight: 300;
+  text-align: left;
 }
 
 .hero-section .hero-content h1 span {
@@ -1038,71 +1200,272 @@ body .body-overlay {
 .resume-area .resume-content .resume-timeline .item:hover .date {
   color: var(--primary_color);
 }
+/* Import a font similar to the image, e.g., Outfit from Google Fonts */
+/* Ensure this is in your main stylesheet or <head> */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
 
-/* 12 - Services */
+
+/* 12 - Services - Keep original section padding */
 .services-area {
   padding-top: 90px;
   padding-bottom: 90px;
+  background-color: #000; /* Ensure the section background is dark */
+  color: #fff; /* Ensure text is white */
+  font-family: 'Outfit', sans-serif; /* Apply the font */
 }
 
+/* Keep header styles if they are defined elsewhere and look correct */
+.services-area .section-header {
+    text-align: center; /* Match image */
+    margin-bottom: 40px; /* Space below header */
+    /* padding: 0 20px; Assuming custom-container handles horizontal spacing */
+}
+
+.services-area .section-header h4 {
+    /* Styles for subtitle */
+    font-size: 16px; /* Adjust as needed */
+    color: var(--primary_color); /* Assuming primary_color is defined */
+    /* ... other subtitle styles */
+}
+
+.services-area .section-header h1 {
+    /* Styles for main title */
+     font-size: 40px; /* Adjust as needed */
+    font-weight: 700; /* Adjust as needed */
+    margin: 0;
+    /* ... other title styles */
+}
+
+/* --- Modified Services Items Container --- */
+.services-items {
+  display: flex;
+  overflow-x: auto; /* Keep this, JS controls scrolling but manual scroll is still possible */
+  -webkit-overflow-scrolling: touch;
+  gap: 20px; /* Space between cards */
+
+  /* Add the centering/width for full bleed as discussed previously */
+  width: 50vw;
+  position: relative; /* Needed for left/transform centering */
+  left: 50%;
+  transform: translateX(-50%);
+
+  /* Adjust padding to align cards with your main content column */
+  /* **IMPORTANT: Match these values to your layout's horizontal padding/margins** */
+  padding-left: 20px;
+  padding-right: 20px;
+
+  padding-bottom: 20px; /* Space for scrollbar */
+
+  /* Optional: Hide the default scrollbar */
+  scrollbar-width: none;  /* For Firefox */
+  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+
+  /* Disable pointer events briefly during duplication to prevent interaction issues */
+  /* pointer-events: none; *Will handle this in JS temporarily* */
+
+}
+
+/* Optional: Hide the scrollbar for Webkit browsers (Chrome, Safari, Edge) */
+.services-items::-webkit-scrollbar {
+  display: none;
+}
+
+/* Optional: Style the scrollbar for Webkit browsers (Chrome, Safari, Edge) */
+.services-items::-webkit-scrollbar {
+    height: 8px; /* Height of the horizontal scrollbar */
+}
+
+.services-items::-webkit-scrollbar-track {
+    background: #1a1a1a; /* Track color */
+    border-radius: 10px;
+}
+
+.services-items::-webkit-scrollbar-thumb {
+    background: #333; /* Thumb color */
+    border-radius: 10px;
+}
+
+.services-items::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Thumb color on hover */
+}
+
+
+/* --- Modified Service Item (Card Styling) --- */
 .services-items .service-item {
-  border: 1px solid #565656;
-  border-radius: 20px;
-  transition: 0.3s;
-  position: relative;
-  padding: 44px 48px 41px 48px;
-  margin-bottom: 10px;
+  flex: 0 0 320px; /* Prevent shrinking, prevent growing, set base width */
+  width: 320px; /* Explicit width */
+  min-height: 380px; /* Adjust height as needed */
+  background-color: #000; /* Card background is same as section */
+  border: 1px solid #565656; /* Base border style (can be overridden by color classes) */
+  border-radius: 0; /* Remove border-radius to match image */
+  transition: border-color 0.3s; /* Keep border transition */
+  position: relative; /* Keep if needed for scroll animation, but remove icon absolute pos */
+  padding: 30px; /* Adjust padding to match image */
+  margin-bottom: 0; /* Remove margin-bottom as gap handles spacing */
+  display: flex; /* Use flex to structure card content */
+  flex-direction: column; /* Stack content vertically */
+  justify-content: space-between; /* Push button to the bottom */
+  box-sizing: border-box; /* Include padding and border in element's total size */
+  /* Remove any conflicting styles from your original CSS */
 }
 
-.services-items .service-item:last-child {
-  margin-bottom: 0;
+/* Border Colors (Override the base border) */
+.services-items .service-item.blue-border { border-color: #007bff; }
+.services-items .service-item.green-border { border-color: #28a745; }
+.services-items .service-item.orange-border { border-color: #fd7e14; }
+.services-items .service-item.purple-border { border-color: #6f42c1; }
+.services-items .service-item.red-border { border-color: #dc3545; } /* Example color if needed */
+
+
+/* Styles for the new h3 card title */
+.services-items .service-item .card-title {
+    font-size: 32px; /* Adjust size */
+    font-weight: 600; /* Adjust weight */
+    margin: 0 0 15px 0; /* Space below title */
+    color: #fff; /* White text */
+    line-height: 1.2; /* Adjust line height */
 }
 
-.services-items .service-item h2 {
-  font-size: 24px;
-  font-weight: 300;
-  margin-bottom: 8px;
-  color: #fff;
+/* Styles for the card description paragraph */
+.services-items .service-item .card-description {
+    font-size: 16px; /* Adjust size */
+    color: #999999; /* Keep gray text */
+    margin-bottom: 20px; /* Space before button */
+    flex-grow: 1; /* Allow description to take up available space */
+    line-height: 1.5;
 }
 
-.services-items .service-item h2 a {
-  color: #fff;
-  transition: 0.3s;
+/* Remove styles for the old h2 and p if they are conflicting */
+/* .services-items .service-item h2 { ... } */
+/* .services-items .service-item p { ... } */
+
+/* Remove or modify the old icon styles as the icon is removed from the HTML */
+/* .services-items .service-item i { display: none; } or remove the rule */
+
+/* Remove or modify the old projects span styles */
+/* .services-items .service-item .projects { display: none; } or remove the rule */
+
+
+/* --- Styles for the "Know more" button --- */
+.know-more-button {
+    display: inline-flex; /* Align text and arrow */
+    align-items: center;
+    background-color: #fff; /* White background for button */
+    color: #000; /* Black text */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px; /* Pill shape */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.services-items .service-item:hover {
-  border-color: var(--primary_color);
+.know-more-button:hover {
+    background-color: #eee;
 }
 
-.services-items .service-item:hover h2 a {
-  color: var(--primary_color);
+.arrow-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-left: 8px;
+    background-color: #000; /* Black circle background */
+    color: #fff; /* White arrow */
+    border-radius: 50%; /* Make it round */
+    font-size: 14px;
+    font-weight: bold;
 }
 
-.services-items .service-item p {
-  font-size: 14px;
-  color: #999999;
-  margin-bottom: 30px;
+
+/* --- Modal Styling (Copy from previous response) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark semi-transparent overlay */
+    display: flex; /* Use flexbox to center content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    z-index: 1000; /* Ensure it's on top of other content */
+    visibility: hidden; /* Start hidden */
+    opacity: 0; /* Start fully transparent */
+    transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition */
 }
 
-.services-items .service-item .projects {
-  font-size: 12px;
-  color: #fff;
-  text-transform: uppercase;
-  display: inline-block;
+.modal-overlay.visible {
+    visibility: visible;
+    opacity: 1;
 }
 
-.services-items .service-item:hover .projects {
-  text-decoration: underline;
+.modal-content {
+    background-color: #000; /* Dark background */
+    color: #fff; /* White text */
+    padding: 40px;
+    border-radius: 8px;
+    width: 90%; /* Responsive width */
+    max-width: 700px; /* Maximum width */
+    position: relative; /* Needed to position the close button */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    max-height: 90vh; /* Prevent content from overflowing viewport */
+    overflow-y: auto; /* Add scroll if content is too tall */
 }
 
-.services-items .service-item i {
-  position: absolute;
-  font-size: 30px;
-  color: var(--primary_color);
-  top: 45px;
-  right: 50px;
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #aaa;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
+.modal-close:hover,
+.modal-close:focus {
+    color: #fff;
+}
+
+.modal-title {
+    font-size: 40px; /* Larger title */
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+}
+
+.modal-description {
+    font-size: 18px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Style for the optional extra button (like 'Figma') */
+.modal-extra-button {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+.modal-extra-button:hover {
+     background-color: #eee;
+}
+
+/* Hide body scroll when modal is visible */
+body.modal-open {
+    overflow: hidden;
+}
 /* 13 - Skills */
 .skills-area {
   padding-top: 90px;
@@ -1159,7 +1522,7 @@ body .body-overlay {
 }
 
 .portfolio-items .portfolio-item .portfolio-item-inner {
-  height: 370px;
+  height: 100%;
   overflow: hidden;
   border-radius: 30px;
   position: relative;
