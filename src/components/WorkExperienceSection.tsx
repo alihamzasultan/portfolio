@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import SplitText from "./reactbits/SplitText";
-import Dither from "./reactbits/Dither";
+// import Dither from "./reactbits/Dither";
 
 const experiences = [
   {
@@ -42,7 +42,7 @@ const experiences = [
 export default function WorkExperienceSection() {
   return (
     <section className="py-20 border-t border-white/5 relative overflow-hidden" id="experience">
-      <div className="absolute inset-0 w-full h-full z-0 opacity-40 pointer-events-auto">
+      {/* <div className="absolute inset-0 w-full h-full z-0 opacity-40 pointer-events-auto">
         <Dither
           waveColor={[128 / 255, 128 / 255, 128 / 255]}
           disableAnimation={false}
@@ -53,17 +53,17 @@ export default function WorkExperienceSection() {
           waveFrequency={0.5}
           waveSpeed={0.01}
         />
-      </div>
+      </div> */}
 
       <div className="w-full max-w-6xl mx-auto px-6 sm:px-12 flex flex-col lg:flex-row gap-12 lg:gap-20 relative z-10">
-        
+
         {/* Left Column - Sticky header */}
         <div className="lg:w-1/3 lg:sticky lg:top-32 h-fit relative py-10">
-          
+
           <SplitText tag="h2" textAlign="left" className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-6 leading-tight">
             Experience
           </SplitText>
-          
+
           <p className="text-gray-400 text-lg leading-relaxed">
             I have worked with some of the most innovative industry leaders to help build their top-notch products.
           </p>
@@ -72,12 +72,12 @@ export default function WorkExperienceSection() {
         {/* Right Column - List */}
         <div className="lg:w-2/3 flex flex-col">
           {experiences.map((exp, i) => (
-            <div 
-              key={i} 
+            <div
+              key={i}
               className="group flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6 py-6 border-b border-white/5 hover:bg-white/5 transition-all duration-300 px-4 -mx-4 rounded-2xl cursor-pointer"
             >
               {/* Logo */}
-              <div 
+              <div
                 className={`mt-1 flex items-center justify-center flex-shrink-0 shadow-lg overflow-hidden
                   ${exp.logoUrl ? 'w-24 h-12 rounded-lg bg-white' : `w-12 h-12 rounded-full bg-gradient-to-tr ${exp.logoColor} font-bold text-sm text-white`}
                 `}
@@ -88,7 +88,7 @@ export default function WorkExperienceSection() {
                   exp.logoText
                 )}
               </div>
-              
+
               {/* Content */}
               <div className="flex-grow flex flex-col sm:flex-row gap-4 sm:gap-0 justify-between">
                 <div className="flex-grow pr-4">
@@ -99,7 +99,7 @@ export default function WorkExperienceSection() {
                     {exp.company} {exp.location && <span className="opacity-75">| {exp.location}</span>}
                   </p>
                 </div>
-                
+
                 {/* Date */}
                 <div className="text-gray-500 text-sm font-medium sm:text-right whitespace-nowrap pt-1 sm:pt-0">
                   {exp.date}
@@ -108,7 +108,7 @@ export default function WorkExperienceSection() {
             </div>
           ))}
         </div>
-        
+
       </div>
     </section>
   );
