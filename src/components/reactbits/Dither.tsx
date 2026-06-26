@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /* eslint-disable react/no-unknown-property */
 import { useRef, useEffect, forwardRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
@@ -142,7 +142,6 @@ class RetroEffectImpl extends Effect {
       ['pixelSize', new THREE.Uniform(2.0)]
     ]);
     super('RetroEffect', ditherFragmentShader, { uniforms });
-    this.uniforms = uniforms;
   }
   set colorNum(v: any) {
     this.uniforms.get('colorNum')!.value = v;
