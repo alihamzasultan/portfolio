@@ -161,3 +161,10 @@ textarea:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px #090910 inset !important;
   -webkit-text-fill-color: #f3f4f6 !important;
 }
+
+/* Prevent image selection and dragging globally */
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
